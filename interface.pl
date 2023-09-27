@@ -1,12 +1,13 @@
-:-consult(splitter).
-:-consult(originParser).
-:-consult(destinyParser).
-:-consult(intermediateParser).
+:-consult('Logic/splitter.pl').
+:-consult('Parsers/originParser.pl').
+:-consult('Parsers/destinyParser.pl').
+:-consult('Parsers/intermediateParser.pl').
 
 %------------------------WELCOME
 heywazelog :-
-    nl, write('Hola usuario, bienvenido'), nl,
-    getOrigin.
+    nl, write('Hola usuario, bienvenido.'), 
+    nl, write("NOTA: Recuerde usar MAYUSCULAS donde es debido y evitar tanto tildes como puntos finales."), 
+    nl, getOrigin.
  
 %------------------------DATA COLLECTION
 getOrigin:-
@@ -24,17 +25,23 @@ getDestination:-
 continueConversation :-
     nl,write('Deseas agregar un punto intermedio?'), nl, 
     read_string(user_input, "\n", "\r", _, ANSWER),
-    (ANSWER = "si" -> addIntermediate ; endConversation).
+    (ANSWER = "si" -> addIntermediate([]) ; endConversation).
 
-addIntermediate:-
+addIntermediate(INTERMEDIATE_LIST):-
     nl,write('Ingresa el punto intermedio o escribe no para terminar.'), nl,
     read_string(user_input, "\n", "\r", _, INTERMEDIATE),
     split_string(INTERMEDIATE, ' ', SUBLIST_INTER), 
-    (INTERMEDIATE = "no" -> endConversation ; (inter(SUBLIST_INTER) -> continueConversation ; intermediateError)).
+        (INTERMEDIATE = "no" -> endConversation(INTERMEDIATE_LIST)
+        ; 
+            (inter(SUBLIST_INTER) -> append(INTERMEDIATE_LIST, [INTERMEDIATE], NEW_INTERMEDIATE_LIST), 
+            addIntermediate(NEW_INTERMEDIATE_LIST)
+            ; 
+            intermediateError(INTERMEDIATE_LIST))).
     
-endConversation :-
+endConversation(INTERMEDIATE_LIST) :-
     nl,write('Deseas terminar la conversacion? (si/no)'), nl,
     read_string(user_input, "\n", "\r", _, TERMINATE),
+     write(INTERMEDIATE_LIST),
     nl,(TERMINATE = "si" -> write('Gracias por usar el programa. Conversacion terminada.'), nl, nl ; continueConversation).
 
 %------------------------errorManager
@@ -46,9 +53,10 @@ destinyError:-
     nl, write("El destino ingresado no se encuentra en mi base de datos o no comprendo tu entrada, favor ingresa una distinta."),nl,
     getDestination.
 
-intermediateError:-
+intermediateError(INTERMEDIATE_LIST):-
     nl, write("El destino ingresado no se encuentra en mi base de datos o no comprendo tu entrada, favor ingresa una distinta."),nl, 
-    addIntermediate.
+    addIntermediate(INTERMEDIATE_LIST).
     
+
 
 
