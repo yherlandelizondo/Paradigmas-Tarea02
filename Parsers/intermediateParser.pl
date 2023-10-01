@@ -5,11 +5,12 @@
 
     inter --> interPlace.
     inter --> ["El", "punto", "intermedio", "es"], interPlace.
-    inter --> ["El", "punto", "intermedio", "será"], interPlace.
+    inter --> ["El", "punto", "intermedio", "sera"], interPlace.
     inter --> ["El", "punto", "intermedio", "estará", "en"], interPlace.
     inter --> ["Me", "gustaria", "parar", "en"], interPlace.
     inter --> ["Me", "gustaria", "hacer", "una", "parada", "en"], interPlace.
     inter --> ["Parare", "en"], interPlace.
+    inter --> ["Quiero", "pasar", "a"], interPlace.
     inter --> ["Hare", "una", "parada", "en"], interPlace.
 
 

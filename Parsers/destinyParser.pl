@@ -9,11 +9,13 @@
     destiny --> ["Voy", "para"], destinyPlace.
     destiny --> ["Me", "dirijo", "a"], destinyPlace.
     destiny --> ["Quiero", "ir", "a"], destinyPlace.
+    destiny --> ["Quiero", "llegar", "a"], destinyPlace.
     destiny --> ["Estoy", "planeando", "ir", "a"], destinyPlace.
     destiny --> ["Tengo", "como", "destino"], destinyPlace.
     destiny --> ["El", "lugar", "al", "que", "me", "dirijo", "es"], destinyPlace.
     destiny --> ["Mi", "parada", "es"], destinyPlace.
     destiny --> ["Estoy", "viajando", "a"], destinyPlace.
+    destiny --> ["Parare", "en"], destinyPlace.
 
     destinyPlace --> ["Cartago"].
     destinyPlace --> ["Heredia"].

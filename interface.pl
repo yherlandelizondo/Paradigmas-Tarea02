@@ -2,6 +2,7 @@
 :-consult('Parsers/originParser.pl').
 :-consult('Parsers/destinyParser.pl').
 :-consult('Parsers/intermediateParser.pl').
+:-consult('Parsers/auxiliarParser.pl').
 
 %------------------------WELCOME
 heywazelog :-
@@ -25,13 +26,16 @@ getDestination:-
 continueConversation :-
     nl,write('Deseas agregar un punto intermedio?'), nl, 
     read_string(user_input, "\n", "\r", _, ANSWER),
-    (ANSWER = "si" -> addIntermediate([]) ; endConversation).
+    (auxiliar(ANSWER) -> ANSWER = "Si" -> addIntermediate([]); 
+    
+    
+      ; endConversation). %---------------------------------------------------------------
 
 addIntermediate(INTERMEDIATE_LIST):-
     nl,write('Ingresa el punto intermedio o escribe no para terminar.'), nl,
     read_string(user_input, "\n", "\r", _, INTERMEDIATE),
     split_string(INTERMEDIATE, ' ', SUBLIST_INTER), 
-        (INTERMEDIATE = "no" -> endConversation(INTERMEDIATE_LIST)
+        (INTERMEDIATE = "no" -> endConversation(INTERMEDIATE_LIST) %---------------------------------------------------------------
         ; 
             (inter(SUBLIST_INTER) -> append(INTERMEDIATE_LIST, [INTERMEDIATE], NEW_INTERMEDIATE_LIST), 
             addIntermediate(NEW_INTERMEDIATE_LIST)
@@ -42,7 +46,7 @@ endConversation(INTERMEDIATE_LIST) :-
     nl,write('Deseas terminar la conversacion? (si/no)'), nl,
     read_string(user_input, "\n", "\r", _, TERMINATE),
      write(INTERMEDIATE_LIST),
-    nl,(TERMINATE = "si" -> write('Gracias por usar el programa. Conversacion terminada.'), nl, nl ; continueConversation).
+    nl,(TERMINATE = "si" -> write('Gracias por usar el programa. Conversacion terminada.'), nl, nl ; continueConversation). %---------------------------------------------------------------
 
 %------------------------errorManager
 originError:-
