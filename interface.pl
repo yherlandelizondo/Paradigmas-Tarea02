@@ -1,5 +1,6 @@
 :-consult('Logic/splitter.pl').
-:-consult('expert_system/parser.pl').
+:-consult('expertSystem/parser.pl').
+:-consult('Logic/lastElem.pl').
 
 
 %-------------------------------------WELCOME
@@ -23,20 +24,38 @@ getDestination:-
 
 
 addIntermediate(INTERMEDIATE_LIST):-
-    nl,write('Ingresa el punto intermedio o escribe no para terminar.'), nl,
+    nl,write('Okay. Ingresa un punto intermedio o escribe "ya" para terminar.'), nl,
     read_string(user_input, "\n", "\r", _, INTERMEDIATE),
     split_string(INTERMEDIATE, ' ', SUBLIST_INTER), 
-        (INTERMEDIATE = "no" -> answer(INTERMEDIATE_LIST) 
+        (INTERMEDIATE = "ya" -> answer(INTERMEDIATE_LIST) 
         ; 
-            (analyzeSentence(SUBLIST_START) -> append(INTERMEDIATE_LIST, [INTERMEDIATE], NEW_INTERMEDIATE_LIST), 
-            addIntermediate(NEW_INTERMEDIATE_LIST)
+            (analyzeSentence(SUBLIST_INTER) -> lastElement(SUBLIST_INTER, LASTITEM), append(INTERMEDIATE_LIST, [LASTITEM], NEW_INTERMEDIATE_LIST), 
+            addIntermediate(NEW_INTERMEDIATE_LIST))
             ; 
+            (analyzeAuxiliarSentence(SUBLIST_INTER) -> interDirectioner(INTERMEDIATE_LIST) 
+                %aqui llamamos a los predicados correspondientes que preguntan cual y donde
+                
+            ; %si no se cumple, llama error
             intermediateError(INTERMEDIATE_LIST))).
 
+interDirectioner(INTERMEDIATE_LIST) :-
+    nl,write("Cual?"), nl,
+    read_string(user_input, "\n", "\r", _, SITUATION), 
+    nl, write("Indicame donde queda "),
+    write(SITUATION), 
+    write("?"), nl,
+    read_string(user_input, "\n", "\r", _, SITUATION_INTERMEDIATE),
+    split_string(SITUATION_INTERMEDIATE, ' ', SUBLIST_SITUATION), 
+    (analyzeSentence(SUBLIST_SITUATION) -> lastElement(SUBLIST_SITUATION, LASTITEM), append(INTERMEDIATE_LIST, [LASTITEM], NEW_INTERMEDIATE_LIST),
+    addIntermediate(NEW_INTERMEDIATE_LIST)
+    ;
+    intermediateError(INTERMEDIATE_LIST)).
+    
 answer(INTERMEDIATE_LIST) :-
     nl,write('Tu ruta a seguir es la siguiente'), nl,
     write(INTERMEDIATE_LIST),
-    nl,write('Con un tiempo estimado de '), nl,
+    nl,write('Con un tiempo estimado de '), 
+    write(" minutos"),
     (endConversation).
     
 endConversation:-
