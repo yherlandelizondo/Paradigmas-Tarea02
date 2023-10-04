@@ -2,21 +2,21 @@
 
     %   DETERM + LOCATION
     nounPhrase --> determ, place.
-    %nounPhrase --> ["En"], Cartago.
+    % nounPhrase --> ["En"], Cartago.
 
     %   VERB + nounPhrase
     verbPhrase --> verb, nounPhrase.
-    %verbPhrase --> ["Estoy", "en"], place.
+    % verbPhrase --> ["Estoy", "en"], place.
 
-%-------------------------------------GRAMMATICAL RULES
+%-------------------------------------AUXILIAR GRAMMATICAL RULES
 
     %   DETERM + LOCATION
     auxNounPhrase --> determ, auxPlace.
-    %nounPhrase --> ["En"], Cartago.
+    % nounPhrase --> ["En"], Cartago.
 
     %   VERB + nounPhrase
     auxVerbPhrase --> verb, auxNounPhrase.
-    %verbPhrase --> ["Estoy", "en"], auxPlace.
+    % verbPhrase --> ["Estoy", "en"], auxPlace.
     
  %-------------------------------------SENTENCES
 
@@ -28,12 +28,13 @@
 
 
 %-------------------------------------AUXILIAR SENTENCES
+
     auxiliarSentence --> auxPlace.
     auxiliarSentence --> auxNounPhrase.
     auxiliarSentence --> auxNounPhrase.
     auxiliarSentence --> determ, auxVerbPhrase.
     auxiliarSentence --> verb, determ, auxVerbPhrase.
-    auxiliarSentence --> verb, determ, auxNounPhrase..
+    auxiliarSentence --> verb, determ, auxNounPhrase.
     auxiliarSentence --> verb, determ, verb, determ, auxNounPhrase.
 
 %-------------------------------------VERBS
@@ -48,7 +49,9 @@
     verb --> ["tengo"].
     verb --> ["pasar"].
     verb --> ["gustaria"].
+    verb --> ["ubico"].
     verb --> ["ubica"].
+    verb --> ["ubicado"].
     verb --> ["dirijo"].
     verb --> ["esta"].
     verb --> ["Esta"].
@@ -86,6 +89,7 @@
     place --> ["Cervantes"].
 
 %-------------------------------------AUXILIAR PLACES
+
     auxPlace --> ["supermercado"].
     auxPlace --> ["cine"].
     auxPlace --> ["gimnasio"].
