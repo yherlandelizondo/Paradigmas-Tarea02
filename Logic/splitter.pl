@@ -21,3 +21,8 @@ ejemploSepararCadenas :-
     write(SUBSTRINGS).
 %:- ejemploSepararCadenas.
 
+% Predicate to multiply the value of a variable by 2.
+multiply_by_2(X, Result) :-
+    Result is X * 2.
+
+
