@@ -42,10 +42,10 @@ d("Cervantes","Cachi",7).
 d("Orosi","Paraiso",8).
 d("Orosi","Cachi",12).
 
-%  Jua Vinas
+%  Juan Vinas
 d("JuanVinas","Turrialba",4).
 
-% Cachi­
+% Cachi
 d("Cachi","Turrialba",40).
 d("Cachi","Cervantes",7).
 d("Cachi","Paraiso",10).

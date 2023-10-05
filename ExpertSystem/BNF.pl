@@ -55,6 +55,7 @@
     verb --> ["dirijo"].
     verb --> ["esta"].
     verb --> ["Esta"].
+    verb --> ["Queda"].
 
 %-------------------------------------DETERMINANTS
     determ -->["en"].
@@ -72,6 +73,8 @@
     determ -->["Para"].
     determ -->["que"].
     determ -->["Me"].
+    determ -->["el"].
+    determ -->["El"].
 
 %-------------------------------------PLACES
 

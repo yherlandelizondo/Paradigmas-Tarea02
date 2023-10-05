@@ -36,7 +36,7 @@ dijkstraMain(GRAPH, Infinity, XS, VS, START, SOLUTION) :-
 
 % Calculates the shortest path from the starting node to a specific node (V) in the graph, using
 % distance and relationship information from previous nodes. The result is a tuple
-%(N, D, [START|P]), where N is the name of the node V, D is the distance of the shortest path,
+% (N, D, [START|P]), where N is the name of the node V, D is the distance of the shortest path,
 % and [START|P] is the list representing the path from the node from the beginning to V.
 % OUTPUT:START
 % INPUT:V, (N, D, [START|P])
@@ -61,8 +61,8 @@ buildPath(END, START, PATH) :-
 % is used to initialize the attributes of a node. Sets the distance from the starting node to V
 % to infinite (Infinity) and associates the node name (N)
 % to the name attribute of node V.
-%OUTPUT:  NODENAME-NODEATTRIBUTES modified
-%INPUT: Infinity,  NODENAME-NODEATTRIBUTES
+% OUTPUT:  NODENAME-NODEATTRIBUTES modified
+% INPUT: Infinity,  NODENAME-NODEATTRIBUTES
 initDist(Infinity, NODENAME-NODEATTRIBUTES) :-
     put_attr(NODEATTRIBUTES, name, NODENAME),
     put_attr(NODEATTRIBUTES, dist, Infinity).
@@ -70,8 +70,8 @@ initDist(Infinity, NODENAME-NODEATTRIBUTES) :-
 
 
 % It is responsible for initializing attributes related to adjacent nodes in a directed graph.
-%OUTPUT:  NODEATTRIBUTESLIST modified
-%INPUT: NODEATTRIBUTESLIST, d(X, Y, D)
+% OUTPUT:  NODEATTRIBUTESLIST modified
+% INPUT: NODEATTRIBUTESLIST, d(X, Y, D)
 initAdjs(NODEATTRIBUTESLIST, d(X, Y, D)) :-
     memberchk(X-XV, NODEATTRIBUTESLIST),
     memberchk(Y-YV,NODEATTRIBUTESLIST),

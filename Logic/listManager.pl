@@ -1,14 +1,14 @@
 % Predicate to add a given value to each element in the list.
-add_value_to_each([], _, []).
-add_value_to_each([ELEMENT|REST_ELEMENTS], VALUE, [[ELEMENT, VALUE]|REST_RESULT]) :-
-    add_value_to_each(REST_ELEMENTS, VALUE, REST_RESULT).
+addValueToEach([], _, []).
+addValueToEach([ELEMENT|REST_ELEMENTS], VALUE, [[ELEMENT, VALUE]|REST_RESULT]) :-
+    addValueToEach(REST_ELEMENTS, VALUE, REST_RESULT).
 
 
 % Main predicate to add a given value to each element in the list.
 % example
-% ?- add_value_to_elements([1, 2, 3, 4], 5, Resultado).
-add_value_to_elements(SLIST, VALUE, RESULT) :-
-    add_value_to_each(SLIST, VALUE, RESULT).
+% ?- addValueToElements([1, 2, 3, 4], 5, Resultado).
+addValueToElements(SLIST, VALUE, RESULT) :-
+    addValueToEach(SLIST, VALUE, RESULT).
 
 
 % Rule to obtain the last element of the list.
@@ -19,26 +19,28 @@ lastElement([_|Tail], LAST) :- lastElement(Tail, LAST).
 
 
 % Rule to get the first elemento of a list
-first_element([FIRST_ELEMENT|_], FIRST_ELEMENT).
+firstElement([FIRSTELEMENT|_], FIRSTELEMENT).
 
 
 % Extract the first element of each sublist
-firstExtractor(ELEMLIST, FIRSTELEMENTS) :-
-    maplist(first_element, ELEMLIST, FIRSTELEMENTS).
+% example
 %?- firstExtractor([[TresRios, 8], [MusgoVerde, 10]], PRIMEROS).
+firstExtractor(ELEMLIST, FIRSTELEMENTS) :-
+    maplist(firstElement, ELEMLIST, FIRSTELEMENTS).
+
 
 
 % Rule to add an element to the beginning of a list.
 % example
-% ?- add_to_beginning(lugar1, [Paris, Osaka, Denver], NuevaLista).
-add_to_beginning(ELEMENT, LISTORIGINAL, NEWLIST) :-
+% ?- addToBeginning(lugar1, [Paris, Osaka, Denver], NuevaLista).
+addToBeginning(ELEMENT, LISTORIGINAL, NEWLIST) :-
     NEWLIST = [ELEMENT | LISTORIGINAL].
 
 
 % Rule to add an element to the end of a list.
 % example
-% ?- add_to_end(lugar4, [Paris, Osaka, Denver], NuevaLista).
-add_to_end(ELEMENT, [], [ELEMENT]).
-add_to_end(ELEMENT, [HEAD|TAIL], [HEAD|NEWLIST]) :-
-    add_to_end(ELEMENT, TAIL, NEWLIST).
+% ?- addToEnd(lugar4, [Paris, Osaka, Denver], NuevaLista).
+addToEnd(ELEMENT, [], [ELEMENT]).
+addToEnd(ELEMENT, [HEAD|TAIL], [HEAD|NEWLIST]) :-
+    addToEnd(ELEMENT, TAIL, NEWLIST).
 

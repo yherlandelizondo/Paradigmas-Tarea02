@@ -43,10 +43,10 @@ addIntermediate(START,INTERMEDIATE_LIST,END):-
                 route(START,LASTITEM,TIME,RUTE),
                 % write(START),write('m'),write(LASTITEM),write('m'), % OK
                 % write(TIME),nl,
-                nl,write('NOTA: Puedes tomar en cuenta esta ruta alternativa hacia '), 
+                nl,write('SUGERENCIA: Puedes tomar en cuenta esta ruta alternativa hacia '), 
                 write(LASTITEM),write(':'),nl,
                 write(RUTE),nl,
-                add_value_to_elements([LASTITEM], TIME, ITEMNUM),
+                addValueToElements([LASTITEM], TIME, ITEMNUM),
                 % write([LASTITEM]),write('m'),write(TIME),write('m'),write(ITEMNUM),write('m'),nl,
                 append(INTERMEDIATE_LIST, ITEMNUM, NEW_INTERMEDIATE_LIST), 
                 addIntermediate(START,NEW_INTERMEDIATE_LIST,END))
@@ -64,8 +64,6 @@ interDirectioner(START,INTERMEDIATE_LIST,END) :-
     nl, write('Indicame donde queda '),
     write(SITUATION), 
     write('?'), nl,
-    write('Te recuerdo que actualmente tu ruta prevista es:'),nl,
-    write(INTERMEDIATE_LIST),nl,
     read_string(user_input, "\n", "\r", _, SITUATION_INTERMEDIATE),
     split_string(SITUATION_INTERMEDIATE, ' ', SUBLIST_SITUATION), 
 
@@ -74,12 +72,12 @@ interDirectioner(START,INTERMEDIATE_LIST,END) :-
 
         route(START,LASTITEM,TIME,RUTE),
 
-        nl,write('NOTA: Puedes tomar en cuenta esta ruta alternativa hacia '), 
+        nl,write('SUGERENCIA: Puedes tomar en cuenta esta ruta alternativa hacia '), 
         write(LASTITEM),write(':'),nl,
         write(RUTE),nl,
 
         % write(START),write('m'),write(LASTITEM),write('m'), % OK
-        add_value_to_elements([LASTITEM], TIME, ITEMNUM),
+        addValueToElements([LASTITEM], TIME, ITEMNUM),
         % write(ITEMNUM),write('m'),nl,
 
         append(INTERMEDIATE_LIST, ITEMNUM, NEW_INTERMEDIATE_LIST),
@@ -94,11 +92,11 @@ answer(START,INTERMEDIATE_LIST,END) :-
     quicksort(INTERMEDIATE_LIST, SORTEDLIST),
     firstExtractor(SORTEDLIST,FINALINTER_LIST),
 
-    add_to_beginning(START, FINALINTER_LIST, START_INTER),
-    add_to_end(END, START_INTER, START_INTER_END),
+    addToBeginning(START, FINALINTER_LIST, START_INTER),
+    addToEnd(END, START_INTER, START_INTER_END),
 
     calculate_total_duration_and_route(START_INTER_END, TDURATION, TROUTE),
-    add_to_beginning(START, TROUTE, FINAL_ROUTE),
+    addToBeginning(START, TROUTE, FINAL_ROUTE),
 
     nl,write('Tu ruta a seguir es la siguiente:'), nl,
     nl,write(FINAL_ROUTE),nl,
